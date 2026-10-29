@@ -112,6 +112,8 @@ body.allmode #legend { display: flex; }
 #src .x { border: 0; background: none; font-size: 26px; cursor: pointer; color: var(--muted); }
 #src .body { overflow-y: auto; padding: 14px 20px 20px; font-size: 13px; line-height: 1.5; }
 #src .body p { margin: 0 0 8px; }
+#src .body h4 { font-family: 'PT Serif', Georgia, serif; font-size: 17px; margin: 16px 0 6px; }
+#src .body h4:first-child { margin-top: 0; }
 #src .body a { color: var(--muted); }
 @media (max-width: 760px) {
   #tabs { padding: 8px 10px 4px; } #tabs .lbl, #tabs .author { display: none; } #tabs button { padding: 4px 6px; }
@@ -131,8 +133,8 @@ body.allmode #legend { display: flex; }
   <div class="mini"><div class="cap" id="miniCap"></div><div class="row" id="mini"></div><div id="yearBox"><div id="year"></div><div id="count"></div></div></div>
 </header>
 <div id="card"><div class="head"><b id="cardTitle"></b><button class="x" id="cardX" aria-label="Закрыть">×</button></div><div class="list" id="cardList"></div></div>
-<button id="srcBtn">Источники фото</button>
-<div id="src"><div class="head"><b>Источники фото</b><button class="x" id="srcX" aria-label="Закрыть">×</button></div><div class="body" id="srcBody"></div></div>
+<button id="srcBtn">Авторы и источники</button>
+<div id="src"><div class="head"><b>Авторы и источники</b><button class="x" id="srcX" aria-label="Закрыть">×</button></div><div class="body" id="srcBody"></div></div>
 <div id="legend"></div>
 <div id="tl"><button id="play" aria-label="Пуск">▶</button><div id="trackWrap"><div id="track"></div></div></div>
 <div id="tip"></div>
@@ -326,7 +328,7 @@ function loadSheet(sh) {
   globe.htmlElementsData(LABELS.concat(cities)); setTimeout(updateLabels, 900);
   globe.pointOfView({ lat: CFG.view[0], lng: CFG.view[1], altitude: CFG.view[2] }, 800);
   if (sh.all) { refreshAll(); } else { buildTrack(); setYear(Y); }
-  $('srcBody').innerHTML = '<p class="note">Фотографии использованы на условиях свободных лицензий, указанных у каждого снимка (Creative Commons или общественное достояние). Источник — архив Wikimedia Commons.</p>' + B.map(b => '<p><b>' + b.n + '</b> — ' + (credit(b) || 'Фото') + (b.cr && b.cr.u ? '<br><span class="url">' + decodeURI(b.cr.u).replace(/^https?:\/\//, '') + '</span>' : '') + '</p>').join('');
+  $('srcBody').innerHTML = '<h4>Кто сделал</h4><p><b>Анна Линдеман, Даниил Онуфриенко</b> — архитекторы. Барнаул, 2026.<br>Почта: <a href="mailto:lindeman-arch@yandex.ru">lindeman-arch@yandex.ru</a></p><h4>Источники фото</h4><p class="note">Фотографии использованы на условиях свободных лицензий, указанных у каждого снимка (Creative Commons или общественное достояние). Источник — архив Wikimedia Commons.</p>' + B.map(b => '<p><b>' + b.n + '</b> — ' + (credit(b) || 'Фото') + (b.cr && b.cr.u ? '<br><span class="url">' + decodeURI(b.cr.u).replace(/^https?:\/\//, '') + '</span>' : '') + '</p>').join('');
 }
 
 // ===== страница «Все постройки» =====
